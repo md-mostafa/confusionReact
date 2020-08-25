@@ -1,8 +1,15 @@
 import React, { Component } from 'react';
-import {Card, CardBody, CardImg, CardImgOverlay, CardText, CardTitle, ListGroupItem, ListGroup} from 'reactstrap';
+import {Card, CardBody, CardImg, CardText, CardTitle} from 'reactstrap';
 class DishDetailComponent extends Component {
     constructor(props){
         super(props);
+    }
+    componentDidMount(){
+        console.log('Dishdetail Component component did mount invoked');
+    }
+
+    componentDidUpdate() {
+        console.log("Dishdetail compoent did update invoked")
     }
 
     formatDate(dateStr){
@@ -51,16 +58,25 @@ class DishDetailComponent extends Component {
         )
     }
     render() {
-        return (
-            <div className="row">
-                <div className="col-12 col-md-5 m-1">
-                   {this.renderDish(this.props.dish)}
+        if(this.props.dish!=null){
+            return (
+                <div class="container">
+                     <div className="row">
+                         <div className="col-12 col-md-5 m-1">
+                         {this.renderDish(this.props.dish)}
+                         </div>
+                         <div className="col-12 col-md-5 m-1">
+                             {this.renderComments(this.props.dish.comments)}
+                         </div>
+                     </div>
                 </div>
-                <div className="col-12 col-md-5 m-1">
-                    {this.renderComments(this.props.dish.comments)}
-                </div>
-            </div>
-        )
+             )
+        }else{
+            return (
+                <div></div>
+            )
+        }
+        
     }
 }
 
