@@ -12,6 +12,7 @@ export const initialState = {
 };
 
 //creating reducer function
+//reducer takes two parameters state and action
 
 export const Reducer = (state = initialState, action) => {
     return state;

@@ -1,6 +1,7 @@
 import {createStore} from 'redux';
 import {Reducer, initialState} from './reducer';
 
+//createStore takes two parameters Reducers and state
 export const ConfigureStore = () => {
     const store = createStore(
         Reducer,
