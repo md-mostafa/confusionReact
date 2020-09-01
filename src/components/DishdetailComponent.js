@@ -23,8 +23,8 @@ const minLength = (len) => (val) => (val) && (val.length >=len);
             });
         }
         handleSubmit(values) {
-            console.log("Current State is : "+JSON.stringify(values));
-            alert('Current State is : '+JSON.stringify(values));
+            this.toggleModal();
+            this.props.addComment(this.props.dishId, values.rating, values.name, values.comment);
         }
 
         render(){
@@ -49,27 +49,27 @@ const minLength = (len) => (val) => (val) && (val.length >=len);
                                 </Row>
 
                                 <Row className="form-group">
-                                <Label htmlfor="name" md={12}>Your Name</Label>
-                                <Col>
-                                    <Control.text model=".name" id="name" name="name" 
-                                     placeholder="Your Name"
-                                     className="form-control" 
-                                     validators={{
-                                         required, minLength: minLength(3), maxLength: maxLength(15)
-                                     }}
-                                     />
-                                     <Errors
-                                        className="text-danger"
-                                        model=".name"
-                                        show="touched"
-                                        messages={{
-                                            required: '',
-                                            minLength: 'Must be greater than 2 characters',
-                                            maxLength: 'Must be 15 characters or less'
+                                    <Label htmlfor="name" md={12}>Your Name</Label>
+                                    <Col>
+                                        <Control.text model=".name" id="name" name="name" 
+                                        placeholder="Your Name"
+                                        className="form-control" 
+                                        validators={{
+                                            required, minLength: minLength(3), maxLength: maxLength(15)
                                         }}
-                                    />
-                                </Col>
-                            </Row>
+                                        />
+                                        <Errors
+                                            className="text-danger"
+                                            model=".name"
+                                            show="touched"
+                                            messages={{
+                                                required: '',
+                                                minLength: 'Must be greater than 2 characters',
+                                                maxLength: 'Must be 15 characters or less'
+                                            }}
+                                        />
+                                    </Col>
+                                </Row>
 
                                 <Row className="form-group">
                                     <Label htmlfor="comment" md={12}>Comment</Label>
@@ -94,7 +94,7 @@ const minLength = (len) => (val) => (val) && (val.length >=len);
             );
         }
     }
-    function RenderComments({comments}){
+    function RenderComments({comments, addComment, dishId}){
        
         if(comments !=null){
             return (
@@ -114,7 +114,7 @@ const minLength = (len) => (val) => (val) && (val.length >=len);
                             )
                         })}
                     </ul>
-                    <CommentForm />
+                    <CommentForm dishId={dishId} addComment={addComment}/>
                 </div>
             );
         }else{
@@ -157,7 +157,9 @@ const minLength = (len) => (val) => (val) && (val.length >=len);
                     </div>
                      <div className="row">
                          <RenderDish dish={props.dish} />
-                         <RenderComments comments={props.comments} />
+                         <RenderComments comments={props.comments} 
+                         addComment={props.addComment} 
+                         dishId={props.dish.id}/>
                      </div>
                 </div>
              )
