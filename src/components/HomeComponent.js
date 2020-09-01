@@ -31,15 +31,17 @@ function Home(props) {
             <div className="row align-items-start">
                 <div className="col-12 col-md m-1">
                     <RenderCard 
-                    item={props.dish} 
-                    isLoading={props.dishesLoading}
-                    errMess={props.dishErrMess} />
+                        item={props.dish} 
+                        isLoading={props.dishesLoading}
+                        errMess={props.dishesErrMess} 
+                    />
                 </div>
                 <div className="col-12 col-md m-1">
-                <RenderCard 
-                item={props.promotion} 
-                isLoading={props.promoLoading}
-                 errMess={props.promoErrMess} />
+                    <RenderCard 
+                        item={props.promotion} 
+                        isLoading={props.promosLoading}
+                        errMess={props.promosErrMess} 
+                    />
                 </div>
                 <div className="col-12 col-md m-1">
                     <RenderCard item={props.leader} />

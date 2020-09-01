@@ -26,7 +26,7 @@ const minLength = (len) => (val) => (val) && (val.length >=len);
         }
         handleSubmit(values) {
             this.toggleModal();
-            this.props.addComment(this.props.dishId, values.rating, values.name, values.comment);
+            this.props.postComment(this.props.dishId, values.rating, values.name, values.comment);
         }
 
         render(){
@@ -97,7 +97,7 @@ const minLength = (len) => (val) => (val) && (val.length >=len);
         }
     }
 
-    function RenderComments({comments, addComment, dishId}){
+    function RenderComments({comments, postComment, dishId}){
        
         if(comments !=null){
             return (
@@ -117,7 +117,7 @@ const minLength = (len) => (val) => (val) && (val.length >=len);
                             )
                         })}
                     </ul>
-                    <CommentForm dishId={dishId} addComment={addComment}/>
+                    <CommentForm dishId={dishId} postComment={postComment}/>
                 </div>
             );
         }else{
@@ -132,7 +132,7 @@ const minLength = (len) => (val) => (val) && (val.length >=len);
         return (
             <div className="col-12 col-md-5 m-1">
                 <Card>
-                    <CardImg width="100%"src={baseUrl + dish.image} alt={dish.name} />
+                    <CardImg top width="100%" src={baseUrl + dish.image} alt={dish.name} />
                     <CardBody>
                         <CardTitle>{dish.name}</CardTitle>
                         <CardText>{dish.description}</CardText>
@@ -177,8 +177,8 @@ const minLength = (len) => (val) => (val) && (val.length >=len);
                      <div className="row">
                          <RenderDish dish={props.dish} />
                          <RenderComments comments={props.comments} 
-                         addComment={props.addComment} 
-                         dishId={props.dish.id}/>
+                            postComment={props.postComment} 
+                            dishId={props.dish.id}/>
                      </div>
                 </div>
              )
