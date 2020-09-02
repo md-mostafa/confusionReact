@@ -32,7 +32,6 @@ export const postFeedback = (firstname, lastname, telnum, email, agree, contactT
     })
     .then(response => {
         if(response.ok) {
-            alert(response.json());
             return response;
         }
         else {
@@ -46,9 +45,11 @@ export const postFeedback = (firstname, lastname, telnum, email, agree, contactT
         throw errmess;
     })
     .then(response => response.json())
-    .then(response => dispatch(addFeedback(response)))
+    //.then(response => dispatch(addFeedback(response)))
+    .then(response => alert(JSON.stringify(response)))
     .catch(error => {console.log('Post feedback ', error.message) 
-        alert('Your feedback could not be posted\nError: '+error.message)})
+        alert('Your feedback could not be posted\nError: '+error.message);
+    });
 }
 
 

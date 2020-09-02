@@ -26,13 +26,11 @@ function RenderLeader({Leader}) {
 function About(props) {
     const leaders = props.leaders.leaders.map((leader) => {
         return (
-            <Stagger in>
                 <div key={leader.id} className="col-12 mt-5">
                     <Fade in>
                         <RenderLeader Leader={leader}/>
                     </Fade>
                 </div>
-            </Stagger>
         );
     });
 
@@ -93,7 +91,9 @@ function About(props) {
                 </div>
                 <div className="col-12">
                     <Media list>
-                        {leaders}
+                        <Stagger in>
+                            {leaders}
+                        </Stagger>
                     </Media>
                 </div>
             </div>
